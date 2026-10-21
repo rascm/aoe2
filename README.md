@@ -4,32 +4,32 @@ Extremely simple Javascript map-like function
 Usage
 ```
 // Create collection and add some items
-int db = xsCollectionCreate();
-    xsCollectionSet(db, "Romans", "Victim");
-    xsCollectionSet(db, "Huns", "Barbar");
-    xsCollectionSet(db, "Goths", "Barbar");
-    xsCollectionSet(db, "Alans", "Barbar");
-    xsCollectionSet(db, "Vandals", "Barbar");
-    xsCollectionSet(db, "Suebians", "Barbar");
-    xsCollectionSet(db, "Hungarians", "Nomad");
-    xsCollectionSet(db, "Tatars", "Barbar");
+int db = rsCollectionCreate();
+    rsCollectionSet(db, "Romans", "Victim");
+    rsCollectionSet(db, "Huns", "Barbar");
+    rsCollectionSet(db, "Goths", "Barbar");
+    rsCollectionSet(db, "Alans", "Barbar");
+    rsCollectionSet(db, "Vandals", "Barbar");
+    rsCollectionSet(db, "Suebians", "Barbar");
+    rsCollectionSet(db, "Hungarians", "Nomad");
+    rsCollectionSet(db, "Tatars", "Barbar");
 // For loop: get key and value from current index
-  for(k = 0; < xsCollectionGetSize(db)) {
-      string key = xsCollectionGetKey(db, k);
-      string val = xsCollectionGetValue(db, k);
+  for(k = 0; < rsCollectionGetSize(db)) {
+      string key = rsCollectionGetKey(db, k);
+      string val = rsCollectionGetValue(db, k);
       xsChatData(key + " are " + val + " yet!");
   }
 
 // Conditional check
-  string getGoth = xsCollectionGet(db, "Goths");
+  string getGoth = rsCollectionGet(db, "Goths");
   if(getGoth == "Barbar") {
       // Goths are Barbar yet!
-      xsCollectionSet(db, "Goths", "Defender");
+      rsCollectionSet(db, "Goths", "Defender");
   }
 // Goths are not Barbar anymore
-xsCollectionDelete(db, "Tatars");
+rsCollectionDelete(db, "Tatars");
 
-if(xsCollectionHas(db, "Tatars")) {
+if(rsCollectionHas(db, "Tatars")) {
   // Not executed because tatars are removed!
 }
 
