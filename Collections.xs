@@ -1,17 +1,17 @@
-int xsCollectionCreate() {
+int rsCollectionCreate() {
     int databases = xsArrayCreateInt(0);
     return (databases);
 }
 
-int xsCollectionGetSize(int collection = 0) {
+int rsCollectionGetSize(int collection = 0) {
     return(xsArrayGetSize(collection) / 2);
 }
 
-void xsCollectionClear(int collection = 0) {
+void rsCollectionClear(int collection = 0) {
     xsArrayResizeInt(collection, 0);
 }
 
-string xsCollectionGet(int collection = 0, string key = "") {
+string rsCollectionGet(int collection = 0, string key = "") {
     string returnValue = "";
     int size = xsArrayGetSize(collection);
     key = strTrim(key);
@@ -32,14 +32,14 @@ string xsCollectionGet(int collection = 0, string key = "") {
     return (returnValue);
 }
 
-bool xsCollectionHas(int collection = 0, string key = "") {
-    return (xsCollectionGet(collection, key) != "");
+bool rsCollectionHas(int collection = 0, string key = "") {
+    return (rsCollectionGet(collection, key) != "");
 }
 
-int xsCollectionDelete(int collection = 0, string key = "") {
+int rsCollectionDelete(int collection = 0, string key = "") {
     int size = xsArrayGetSize(collection);
     key = strTrim(key);
-    if(key == "" || xsCollectionHas(collection, key) == false || size < 2)
+    if(key == "" || rsCollectionHas(collection, key) == false || size < 2)
         return (collection);
 
     int newCollection = xsArrayCreateInt(0);
@@ -63,7 +63,6 @@ int xsCollectionDelete(int collection = 0, string key = "") {
         }  
     }
 
-    // Refill old Database
     xsArrayResizeInt(collection, 0);
     for(r = 0; < xsArrayGetSize(newCollection)) {
         if((r % 2) == 1) {
@@ -78,13 +77,13 @@ int xsCollectionDelete(int collection = 0, string key = "") {
     return(collection);
 }
 
-int xsCollectionSet(int collection = 0, string key = "", string value = "") {
+int rsCollectionSet(int collection = 0, string key = "", string value = "") {
     key = strTrim(key);
     if(key == "")
         return (collection);
 
-    if(xsCollectionHas(collection, key)) {
-        xsCollectionDelete(collection, key);
+    if(rsCollectionHas(collection, key)) {
+        rsCollectionDelete(collection, key);
     }
 
     int size = xsArrayGetSize(collection);
@@ -99,7 +98,7 @@ int xsCollectionSet(int collection = 0, string key = "", string value = "") {
     return (collection);
 }
 
-int xsCollectionGetAllKeys(int collection = 0) {
+int rsCollectionGetAllKeys(int collection = 0) {
     int strArr = xsArrayCreateString(0);
     int size = xsArrayGetSize(collection);
     int current = 1;
@@ -116,7 +115,7 @@ int xsCollectionGetAllKeys(int collection = 0) {
     return(strArr);
 }
 
-int xsCollectionGetAllValues(int collection = 0) {
+int rsCollectionGetAllValues(int collection = 0) {
     int strArr = xsArrayCreateString(0);
     int size = xsArrayGetSize(collection);
     int current = 1;
@@ -133,12 +132,12 @@ int xsCollectionGetAllValues(int collection = 0) {
     return(strArr);
 }
 
-string xsCollectionGetKey(int collection = -1, int index = 0) {
-    int keys = xsCollectionGetAllKeys(collection);
+string rsCollectionGetKey(int collection = -1, int index = 0) {
+    int keys = rsCollectionGetAllKeys(collection);
     return(xsArrayGetString(keys, index));
 }
 
-string xsCollectionGetValue(int collection = -1, int index = 0) {
-    int keys = xsCollectionGetAllValues(collection);
+string rsCollectionGetValue(int collection = -1, int index = 0) {
+    int keys = rsCollectionGetAllValues(collection);
     return(xsArrayGetString(keys, index));
 }
