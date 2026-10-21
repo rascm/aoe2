@@ -82,9 +82,8 @@ int rsCollectionSet(int collection = 0, string key = "", string value = "") {
     if(key == "")
         return (collection);
 
-    if(rsCollectionHas(collection, key)) {
-        rsCollectionDelete(collection, key);
-    }
+
+    rsCollectionDelete(collection, key);
 
     int size = xsArrayGetSize(collection);
     int plusSize = size + 2;
